@@ -12,9 +12,7 @@
 
 #include <iostream>
 #include <vector>
-#include <utility>
 #include <map>
-#include <algorithm>
 using namespace std;
 
 class Person
@@ -24,6 +22,7 @@ public:		// variables
 	string m_name;
 
 public:		// constructor
+	Person() {}
 	Person(int age, string name) {
 		m_age = age;
 		m_name = name;
@@ -38,14 +37,19 @@ public:		// method
 	}
 };
 
-void SortVector(vector<Person>& vec_p) {
-	int count = 0;
-	for (int i = 0; i < 200; i++) {
-		if (count == vec_p.size()) {	// 작업 완료했으면 종료
-			break;
-		}
-		
+int SortVector(vector<Person>& vec_p, map<int, Person>& map_p) {
+	int count = 1;
 
+	for (int i = 0; i < 200; i++) {
+		if (count > vec_p.size()) {	// 작업 완료했으면 종료
+			return 0;
+		}
+		for (int j = 0; j < vec_p.size(); j++) {
+			if (vec_p[j].GetAge() == i) {	// age가 i와 같으면
+				map_p.insert({ count, vec_p[j] });	// map_p에 넣고
+				count++;
+			}
+		}
 	}
 }
 
@@ -57,13 +61,18 @@ int main()
 	string name;
 
 	vector<Person> vec_person;
+	map<int, Person> map_person;
 	for (int i = 0; i < N; i++) {
 		cin >> age >> name;
 		Person per(age, name);
 		vec_person.push_back(per);
 	}
-	
-	
-	
+	SortVector(vec_person, map_person);
+
+	for (int i = 1; i <= vec_person.size(); i++) {
+		cout << map_person[i].GetAge() << " " << map_person[i].GetName() << "\n";
+	}
+
+
 	return 0;
 }
