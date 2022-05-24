@@ -9,35 +9,43 @@
 // 
 // N이 들어오면
 // 1~N 까지의 vector를 만들고
-
+// 
+// 
+// DFS를 활용하여 풀이
+// 
+// 
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
-void PrintArray(vector<int> number) {
+#define MAX 9
 
+int N, M;
+int arr[MAX] = { 0, };
+bool visited[MAX] = { false, };
 
-
+void dfs(int cnt) {
+	if (cnt == M) {
+		for (int i = 0; i < M; i++) {
+			cout << arr[i] << " ";
+		}
+		cout << '\n';
+		return;
+	}
+	for (int i = 1; i <= N; i++) {	// 재귀로 arr에 값을 넣고 위에서 출력
+		if (!visited[i]) {
+			visited[i] = true;
+			arr[cnt] = i;
+			dfs(cnt + 1);
+			visited[i] = false;
+		}
+	}
 }
 
 int main()
 {
-	int N, M;
 	cin >> N >> M;
-	bool used[9] = { false };
-	vector<int> number = { 1,2,3,4,5,6,7,8 };
-	
-	number.resize(N);
-	
-	for (int i = 0; i < number.size(); i++) {
-		for (int j = 0; j < number.size(); j++) {
-			if (i != j) {
-				cout << number[i] << " " << number[j] << endl;
-			}
-		}
-	}
-	
+	dfs(0);	
 
 	return 0;
 }
