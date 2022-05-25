@@ -15,19 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1712.cpp">
+    <ClCompile Include="..\math\1085.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="1978.cpp">
+    <ClCompile Include="..\math\3009.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="11653.cpp">
+    <ClCompile Include="..\math\4153.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="10250.cpp">
+    <ClCompile Include="3053.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="2839.cpp">
+    <ClCompile Include="1002.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
