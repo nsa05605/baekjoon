@@ -25,46 +25,46 @@
 // 
 
 #include <iostream>
+#include <cmath>
 using namespace std;
-
-class Cho
-{
-public:	// variables
-	int m_x, m_y;	// x, y coordinates
-	int m_r;		// distance to Ryu
-
-public:	// constructor
-	Cho(int x, int y, int r) {
-		m_x = x;
-		m_y = y;
-		m_r = r;
-	}
-};
-class Baek
-{
-public:	// variables
-	int m_x, m_y;	// x, y coordinates
-	int m_r;		// distance to Ryu
-
-public:	// constructor
-	Baek(int x, int y, int r) {
-		m_x = x;
-		m_y = y;
-		m_r = r;
-	}
-};
 
 int main()
 {
-	int T;
-	cin >> T;
-	for (int i = 0; i < T; i++) {
-		int x1, y1, r1, x2, y2, r2;
-		cin >> x1 >> y1 >> r1 >> x2 >> y2 >> r2;
-		Cho(x1, y1, r1);
-		Baek(x2, y2, r2);		// 조규현과 백승환 생성
+    int T;
+    cin >> T;
+    for (int i = 0; i < T; i++) {
+        int x1, y1, r1, x2, y2, r2;
+        cin >> x1 >> y1 >> r1 >> x2 >> y2 >> r2;
 
-	}
+        int distance = pow(x2 - x1, 2) + pow(y2 - y1, 2);
+        int min_r = pow(r1 - r2, 2);
+        int max_r = pow(r1 + r2, 2);
 
-	return 0;
+        // algorithm
+        if (x1 == x2 && y1 == y2) {  // same position
+            if (r1 == r2) {          // infinity
+                cout << -1 << '\n';
+                continue;
+            }
+            else {                  // no contact
+                cout << 0 << '\n';
+                continue;
+            }
+        }
+        else {
+            if (distance < max_r && distance > min_r) {
+                cout << 2 << '\n';
+                continue;
+            }
+            else if (distance == max_r || distance == min_r) {
+                cout << 1 << '\n';
+                continue;
+            }
+            else {
+                cout << 0 << '\n';
+                continue;
+            }
+        }
+    }
+    return 0;
 }
